@@ -1,14 +1,10 @@
 import React, { useEffect } from 'react';
 import Banner from '../components/Banner';
 import Property from '../components/Property';
-import { fetchData } from '../api/fetchData';
+import { useProperties } from '../hooks/UseProperties';
 const Home = () => {
-  useEffect(() => {
-    // fetchData(
-    //   `${process.env.REACT_APP_API_URL}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=12`
-    // );
-  }, []);
-
+  const { errorMessage, isLoading, propertiesForRent, propertiesForSale } =
+    useProperties();
   return (
     <div className="t">
       <Banner

@@ -5,23 +5,28 @@ import {
 } from '../actions/PropertiesActions';
 import { initialState, DataReducer } from '../reducer/PropertiesReducer';
 import { API_URL, fetchProperties } from '../../api/fetchData';
-
+import { data, data2 } from '../../data';
 export const PropertiesContext = createContext(initialState);
 
 export const PropertiesProvider = ({ children }) => {
   const [state, dispatch] = useReducer(DataReducer, initialState);
 
-  const loadPropertiesForRent = async (url) => {
+  const loadProperties = async (RentUrl, SaleUrl) => {
     dispatch({ type: PropertiesRentActions.FETCH_DATA_REQUEST });
 
     try {
-      const res = await fetchProperties(url);
-      if (res.data) {
-        dispatch({
-          type: PropertiesRentActions.FETCH_DATA_SUCCESS,
-          payload: res.data,
-        });
-      }
+      // const resSale = await fetchProperties(RentUrl);
+      // const resRent = await fetchProperties(SaleUrl);
+      // if (resSale.data && resRent.data) {
+      //   dispatch({
+      //     type: PropertiesRentActions.FETCH_DATA_SUCCESS,
+      //     payload: [resSale.data.hits, resRent.data.hits],
+      //   });
+      // }
+      dispatch({
+        type: PropertiesRentActions.FETCH_DATA_SUCCESS,
+        payload: [data.hits, data2.hits],
+      });
     } catch (error) {
       console.log(error);
 
@@ -31,30 +36,9 @@ export const PropertiesProvider = ({ children }) => {
       });
     }
   };
-
-  const loadPropertiesForSale = async (url) => {
-    dispatch({ type: PropertiesSaleActions.FETCH_DATA_REQUEST });
-    try {
-      const res = await fetchProperties(url);
-      if (res.data) {
-        dispatch({
-          type: PropertiesSaleActions.FETCH_DATA_SUCCESS,
-          payload: res.data,
-        });
-      }
-    } catch (error) {
-      console.log(error);
-      dispatch({
-        type: PropertiesSaleActions.FETCH_DATA_FAILURE,
-        payload: error.message,
-      });
-    }
-  };
   useEffect(() => {
-    loadPropertiesForRent(
-      `${API_URL}//properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=12`
-    );
-    loadPropertiesForSale(
+    loadProperties(
+      `${API_URL}//properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=12`,
       `${API_URL}//properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=12`
     );
   }, []);
