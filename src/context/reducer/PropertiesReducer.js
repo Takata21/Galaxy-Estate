@@ -21,7 +21,7 @@ export const DataReducer = (state = initialState, action) => {
         ...state,
         propertiesForRent: payload[1],
         propertiesForSale: payload[0],
-        // isLoading: false,
+        isLoading: false,
       };
     case PropertiesRentActions.FETCH_DATA_FAILURE:
       return {

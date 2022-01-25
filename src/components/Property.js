@@ -3,32 +3,56 @@ import { Link } from 'react-router-dom';
 import { FaBed, FaBath } from 'react-icons/fa';
 import { BsGridFill } from 'react-icons/bs';
 import { GoVerified } from 'react-icons/go';
-const Property = () => {
+import millify from 'millify';
+const Property = ({ property }) => {
+  const {
+    coverPhoto,
+    price,
+    rentFrequency,
+    rooms,
+    title,
+    baths,
+    area,
+    agency,
+    isVerified,
+    externalID,
+  } = property;
+
+  console.log(property);
   return (
-    <Link to="property-Details/dkjflkjsdlf">
+    <Link
+      to={`property-Details/${externalID}`}
+      className=" max-w-md m-auto shadow p-2  card-w"
+    >
       <div className="px-5">
         <img
-          className="w-full"
-          src="https://bayut-production.s3.eu-central-1.amazonaws.com/image/170244921/9d92c8a8263f4c52a9adeebbb67ab9aa"
-          alt=""
+          className="w-full h-60"
+          src={coverPhoto.url}
+          alt={title}
+          loading="lazy"
         />
         <div className="flex items-center justify-between w-full my-4">
           <div className="flex items-center justify-between gap-2">
-            <GoVerified color="green" />
-            <p className="font-semibold">AED 7850/monthly</p>
+            {isVerified && <GoVerified color="green" />}
+            <p className="font-semibold">
+              AED {price}/{rentFrequency}
+            </p>
           </div>
           <img
-            src="https://bayut-production.s3.eu-central-1.amazonaws.com/image/27680312/542c350564924682a714bb18736db5af"
-            alt=""
+            src={agency.logo.url}
+            alt={agency.name}
             className="w-7 h-7 rounded-full object-cover"
           />
         </div>
         <div className="flex">
           <p className="flex items-center gap-4 text-sky-500">
-            1 <FaBed /> | 1 <FaBath /> | 67.8 sqft <BsGridFill />
+            {rooms} <FaBed /> | {baths} <FaBath /> | {millify(area)} sqft
+            <BsGridFill />
           </p>
         </div>
-        <p className="uppercase mt-3">amazing upgraded 1bhk for mont...</p>
+        <p className="uppercase mt-3">
+          {title.length > 30 ? title.substring(0.3) + '....' : title}
+        </p>
       </div>
     </Link>
   );

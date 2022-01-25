@@ -29,3 +29,7 @@ code {
 .b21 {
   border: 1px solid #EDF2F7;
 }
+
+.card-w {
+  width: 420px;
+}

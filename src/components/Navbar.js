@@ -7,16 +7,16 @@ import { FaMoneyBillWaveAlt } from 'react-icons/fa';
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <nav className=" relative">
-      <div className="flex justify-between items-center p-2 b21">
-        <Link to="/" className="text-blue-600 font-bold text-lg">
+    <nav className=" relative lg:h-16">
+      <div className="flex justify-between items-center p-2 b21 lg:h-full">
+        <Link to="/" className="text-blue-600 font-bold text-lg lg:text-3xl">
           FaState
         </Link>
         <button
-          className="b21 rounded p-1"
+          className="flex items-center justify-center lg:w-10 lg:h-10 b21 rounded p-1 "
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          <FcMenu fontSize="15px" />
+          <FcMenu fontSize="15px" className="lg:text-2xl" />
         </button>
       </div>
 
