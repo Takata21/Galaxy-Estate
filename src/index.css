@@ -8,6 +8,11 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none !important;
+  color: black !important;
+}
+
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
@@ -30,6 +35,18 @@ code {
   border: 1px solid #EDF2F7;
 }
 
+.b22 {
+  border-bottom: 1px solid #EDF2F7;
+}
+
+.b23 {
+  border-top: 1px solid #EDF2F7;
+}
+
 .card-w {
   width: 420px;
+}
+
+.color-primary {
+  color: #4299e1 !important;
 }

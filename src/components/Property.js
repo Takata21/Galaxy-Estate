@@ -18,13 +18,12 @@ const Property = ({ property }) => {
     externalID,
   } = property;
 
-  console.log(property);
   return (
     <Link
-      to={`property-Details/${externalID}`}
-      className=" max-w-md m-auto shadow p-2  card-w"
+      to={`/property-Details/${externalID}`}
+      className=" max-w-sm m-auto p-2 drop-shadow-md  card-w hover:shadow transition-shadow"
     >
-      <div className="px-5">
+      <div className="px-3">
         <img
           className="w-full h-60"
           src={coverPhoto.url}

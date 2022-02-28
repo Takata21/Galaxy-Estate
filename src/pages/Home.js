@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react';
 import Banner from '../components/Banner';
 import Property from '../components/Property';
-import { useProperties } from '../hooks/UseProperties';
 import Spinner from '../components/Spinner';
-const Home = () => {
-  const { errorMessage, isLoading, propertiesForRent, propertiesForSale } =
-    useProperties();
+const Home = ({ forSale, forRent, isLoading }) => {
   return (
     <div className="w-full">
       <Banner
@@ -18,7 +15,7 @@ const Home = () => {
       />
       <div className="properties-container flex w-full my-7 flex-wrap gap-6 lg:gap-3">
         {isLoading && <Spinner />}
-        {propertiesForRent.map((property, index) => (
+        {forRent.map((property, index) => (
           <Property property={property} key={index} />
         ))}
       </div>
@@ -32,7 +29,7 @@ const Home = () => {
       />
       <div className="properties-container flex w-full my-7 flex-wrap gap-6 lg:gap-3">
         {isLoading && <Spinner />}
-        {propertiesForSale.map((property, index) => (
+        {forSale.map((property, index) => (
           <Property property={property} key={index} />
         ))}
       </div>
