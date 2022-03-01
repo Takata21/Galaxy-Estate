@@ -26,7 +26,7 @@ const Property = ({ property }) => {
       <div className="px-3">
         <img
           className="w-full h-60"
-          src={coverPhoto.url}
+          src={coverPhoto?.url}
           alt={title}
           loading="lazy"
         />

@@ -34,7 +34,7 @@ const Navbar = () => {
             </li>
             <li onClick={() => setMenuOpen(false)}>
               <Link
-                to="/search/for-buy"
+                to="/search/for-sale"
                 className="w-full capitalize flex items-center gap-2 no-underline text-black"
               >
                 <FaMoneyBillWaveAlt />

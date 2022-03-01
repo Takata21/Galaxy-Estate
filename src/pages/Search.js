@@ -13,7 +13,6 @@ const Search = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [purpose, setPurpose] = useState('for-rent');
   const [properties, setProperties] = useState([]);
-  const [locationExternalIDs, setLocationExternalIDs] = useState('5002');
   const [categoryExternalID, setCategoryExternalID] = useState('4');
   const [bathsMin, setBathsMin] = useState('0');
   const [rentFrequency, setRentFrequency] = useState('yearly');
@@ -22,19 +21,33 @@ const Search = () => {
   const [roomsMin, setRoomsMin] = useState('0');
   const [sort, setSort] = useState('price-desc');
   const [areaMax, setAreaMax] = useState('35000');
+
   useEffect(() => {
     setPurpose(params.purpose);
   }, []);
 
   useEffect(() => {
     getProperties();
-  }, [purpose]);
+  }, [
+    purpose,
+    categoryExternalID,
+    bathsMin,
+    rentFrequency,
+    priceMin,
+    priceMax,
+    roomsMin,
+    sort,
+    areaMax,
+  ]);
 
   const getProperties = async () => {
     setIsLoading(true);
     const response = await fetchProperties(
-      `${API_URL}/properties/list?locationExternalIDs=${locationExternalIDs}&purpose=${purpose}&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${priceMin}&priceMax=${priceMax}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}`
+      `${API_URL}/properties/list?locationExternalIDs=5002&purpose=${purpose}&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${priceMin}&priceMax=${priceMax}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}`
     );
+    const test = `${API_URL}/properties/list?locationExternalIDs=5002&purpose=${purpose}&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${priceMin}&priceMax=${priceMax}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}`;
+    console.log(test);
+    console.log(response);
     setProperties(response.data.hits);
     setIsLoading(false);
   };
@@ -62,7 +75,6 @@ const Search = () => {
         <Filters
           setPurpose={setPurpose}
           setProperties={setProperties}
-          setLocationExternalIDs={setLocationExternalIDs}
           setCategoryExternalID={setCategoryExternalID}
           BathsMin={setBathsMin}
           setRentFrequency={setRentFrequency}
@@ -76,12 +88,15 @@ const Search = () => {
 
       <div className="mx-3">
         <h3 className="capitalize font-bold ">properties</h3>
-        <div className="properties-container flex w-full my-7 flex-wrap gap-6 lg:gap-3">
-          {isLoading && <Spinner />}
-          {properties?.map((property, index) => (
-            <Property property={property} key={index} />
-          ))}
-        </div>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <div className="properties-container flex w-full my-7 flex-wrap gap-6 lg:gap-3">
+            {properties?.map((property, index) => (
+              <Property property={property} key={index} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

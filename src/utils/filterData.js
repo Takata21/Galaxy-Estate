@@ -111,14 +111,6 @@ export const filterData = [
   },
   {
     items: [
-      { name: 'Furnished', value: 'furnished' },
-      { name: 'Unfurnished', value: 'unfurnished' },
-    ],
-    placeholder: 'Furnish Type',
-    queryName: 'furnishingStatus',
-  },
-  {
-    items: [
       { name: 'Apartment', value: '4' },
       { name: 'Townhouses', value: '16' },
       { name: 'Villas', value: '3' },
