@@ -53,7 +53,7 @@ const Search = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto lg:px-0">
+    <div className="min-h-screen max-w-7xl mx-auto lg:px-0">
       <button
         className="w-full flex items-center justify-center gap-2 py-2 bg-gray-200 border-slate-300 border-b"
         onClick={() => {

@@ -4,7 +4,7 @@ import Property from '../components/Property';
 import Spinner from '../components/Spinner';
 const Home = ({ forSale, forRent, isLoading }) => {
   return (
-    <div className="w-full">
+    <div className="w-full min-h-full">
       <Banner
         purpose="RENT A HOME"
         title1="Rental Homes for"
