@@ -10,7 +10,7 @@ const Navbar = () => {
     <nav className=" relative lg:h-16 max-w-7xl mx-auto border-0">
       <div className="flex justify-between items-center p-2  lg:h-full">
         <Link to="/" className="color-primary font-bold text-3xl lg:text-3xl">
-          FaState
+          Galaxy Estate
         </Link>
         <button
           className="flex items-center justify-center lg:w-10 lg:h-10 b21 rounded p-1 "
