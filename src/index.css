@@ -50,3 +50,8 @@ code {
 .color-primary {
   color: #4299e1 !important;
 }
+
+.r-outline:focus {
+  outline: none;
+
+}

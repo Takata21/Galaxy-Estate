@@ -6,7 +6,7 @@ import { Vdata } from '../VData';
 import Spinner from '../components/Spinner';
 import { useParams } from 'react-router-dom';
 import { API_URL, fetchProperties } from '../api/fetchData';
-
+import SearchInput from '../components/SearchInput';
 const Search = () => {
   const params = useParams();
   const [isLoading, setIsLoading] = useState(false);
@@ -27,6 +27,17 @@ const Search = () => {
   }, []);
 
   useEffect(() => {
+    const getProperties = async () => {
+      setIsLoading(true);
+      const response = await fetchProperties(
+        `${API_URL}/properties/list?locationExternalIDs=5002&purpose=${purpose}&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${priceMin}&priceMax=${priceMax}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}`
+      );
+      // const test = `${API_URL}/properties/list?locationExternalIDs=5002&purpose=${purpose}&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${priceMin}&priceMax=${priceMax}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}`;
+      // console.log(test);
+      // console.log(response);
+      setProperties(response.data.hits);
+      setIsLoading(false);
+    };
     getProperties();
   }, [
     purpose,
@@ -40,20 +51,9 @@ const Search = () => {
     areaMax,
   ]);
 
-  const getProperties = async () => {
-    setIsLoading(true);
-    const response = await fetchProperties(
-      `${API_URL}/properties/list?locationExternalIDs=5002&purpose=${purpose}&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${priceMin}&priceMax=${priceMax}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}`
-    );
-    const test = `${API_URL}/properties/list?locationExternalIDs=5002&purpose=${purpose}&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${priceMin}&priceMax=${priceMax}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}`;
-    console.log(test);
-    console.log(response);
-    setProperties(response.data.hits);
-    setIsLoading(false);
-  };
-
   return (
-    <div className="min-h-screen max-w-7xl mx-auto lg:px-0">
+    // min-h-screen
+    <div className=" max-w-7xl mx-auto lg:px-0">
       <button
         className="w-full flex items-center justify-center gap-2 py-2 bg-gray-200 border-slate-300 border-b"
         onClick={() => {
